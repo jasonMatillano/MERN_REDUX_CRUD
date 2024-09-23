@@ -12,7 +12,7 @@ function Users() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = axios.get('http://localhost:3001')
+                axios.get('http://localhost:3001')
                 .then((response) => {
                     dispatch(getUser(response.data));
                 })
@@ -20,7 +20,7 @@ function Users() {
                     console.log(error)
                 })
 
-                console.log(response.data)
+                console.log(users)
             } catch (error) {
                 console.log(error)
             }
