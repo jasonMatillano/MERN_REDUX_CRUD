@@ -1,14 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector  } from 'react-redux';
+import { getUser } from './redux/userSlice';
+
 
 function Users() {
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.users.users);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = axios.get('')
-                console.log(response)
+                const response = axios.get('http://localhost:3001')
+                .then((response) => {
+                    dispatch(getUser(response.data));
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+                console.log(response.data)
             } catch (error) {
                 console.log(error)
             }
@@ -36,7 +48,25 @@ function Users() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Table rows go here */}
+                        {
+                            users.map((user) => {
+                                return (
+                                    <tr key={user.id}>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.age}</td>
+                                        <td>
+                                            <button className='btn btn-success btn-sm'>
+                                                Update
+                                            </button>
+                                            <button className='btn btn-danger btn-sm'>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
