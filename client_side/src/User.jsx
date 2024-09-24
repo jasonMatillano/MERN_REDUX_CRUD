@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector  } from 'react-redux';
 import { getUser } from './redux/userSlice';
+import { Link } from 'react-router-dom';
 
 
 function Users() {
@@ -34,9 +35,11 @@ function Users() {
             <div className='w-50 bg-white rounded p-4 shadow'>
                 <div className='d-flex justify-content-between mb-3'>
                     <h4>Users</h4>
-                    <button className='btn btn-success btn-sm'>
-                        Add +
-                    </button>
+                    <Link to='/create'>
+                        <button className='btn btn-success btn-sm'>
+                            Add +
+                        </button>
+                    </Link>
                 </div>
                 <table className='table table-striped'>
                     <thead>
