@@ -20,7 +20,7 @@ function CreateUser() {
         axios.post('http://localhost:3001/create', {name, email, age})
         .then((response) => {
             dispatch(addUser(response.data))
-            console.log(response)
+            console.log(response.data)
             navigate('/')
         })
         .catch((error) => {
