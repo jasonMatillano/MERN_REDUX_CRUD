@@ -1,12 +1,30 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { useState } from 'react';
 
 
 function CreateUser() {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [age, setAge] = useState(0);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:3001/create', {name, email, age})
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+
     return (
         <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
             <div className='w-50 bg-white rounded p-4 shadow'>
                 <h4 className='mb-4'>Create User</h4>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor='name' className='form-label'>Name</label>
                         <input 
@@ -14,6 +32,7 @@ function CreateUser() {
                             className='form-control' 
                             id='name' 
                             placeholder='Enter your name' 
+                            onChange={(event) => setName(event.target.value)}
                         />
                     </div>
                     <div className='mb-3'>
@@ -23,6 +42,7 @@ function CreateUser() {
                             className='form-control' 
                             id='email' 
                             placeholder='Enter your email' 
+                            onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
                     <div className='mb-3'>
@@ -32,6 +52,7 @@ function CreateUser() {
                             className='form-control' 
                             id='age' 
                             placeholder='Enter your age' 
+                            onChange={(event) => setAge(event.target.value)}
                         />
                     </div>
                     <button type='submit' className='btn btn-primary w-100'>

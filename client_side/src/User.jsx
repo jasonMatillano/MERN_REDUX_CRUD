@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector  } from 'react-redux';
