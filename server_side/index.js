@@ -22,7 +22,17 @@ app.get('/', async (req, res) => {
     })
 })
 
+app.post('/create', async (req, res) => {
+    UserModel.create(req.body)
+    .then((user) => {
+        res.json(user);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+})
+
 
 app.listen(3001, () => {
-    console.log('Server started on port 3001');
+    console.log('Server started on http://localhost:3001');
 })
