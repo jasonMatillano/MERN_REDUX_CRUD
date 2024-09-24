@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { addUser } from './redux/userSlice';
+import { updateUser } from './redux/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -18,9 +18,9 @@ function UpdateUser() {
 
     const handleUpdate = (event) => {
         event.preventDefault();
-        axios.put('http://localhost:3001/create', {name, email, age})
+        axios.put('http://localhost:3001/update/'+id, {name, email, age})
         .then((response) => {
-            dispatch(addUser(response.data))
+            dispatch(updateUser({id: id, name, email, age}))
             console.log(response.data)
             navigate('/')
         })

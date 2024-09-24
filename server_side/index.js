@@ -32,6 +32,18 @@ app.post('/create', async (req, res) => {
     })
 })
 
+app.put('/update/:id', async (req, res) => {
+    UserModel.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+        UserModel.findById(req.params.id)
+        .then((user) => {
+            res.json(user);
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+})
 
 app.listen(3001, () => {
     console.log('Server started on http://localhost:3001');
