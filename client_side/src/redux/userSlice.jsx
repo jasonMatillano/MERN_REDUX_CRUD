@@ -15,9 +15,12 @@ const userSlice = createSlice({
                     age: user.age
                 }
             })
+        },
+        addUser : (state, action) => {
+            state.users.push(action.payload)
         }
     }
 });
 
-export const {getUser} = userSlice.actions;
+export const {getUser, addUser} = userSlice.actions;
 export default userSlice.reducer;
